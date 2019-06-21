@@ -5,6 +5,7 @@
 # IntelliJ project files
 .idea
 *.iml
-out
-gen
-target/
+.gitignore
+authentication-server/target
+code-create/target
+resource-server/target
