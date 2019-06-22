@@ -8,15 +8,23 @@
 </head>
 
 <body class="layui-layout-body">
+<script src="../static/js/layTabPlus.js"></script>
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <a href="">
-            <div class="layui-logo">后台管理系统</div>
-        </a>
+
+        <div class="layui-logo layui-bg">后台管理系统
+
+        </div>
+
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
+
+            <li id="close" type="button" style="background:black" class="layui-btn layui-btn-sm ">
+
+                <i class="layui-icon" style=" font-size: 10px; color: #FFFFFF;">&#xe668;</i>
+            </li>
             <li class="layui-nav-item">
-                <a href="/">返回前台</a>
+                <a href="">返回前台</a>
             </li>
             <li class="layui-nav-item">
                 <a href="">商品管理</a>
@@ -39,6 +47,7 @@
                 </dl>
             </li>
         </ul>
+        <!--个人中心-->
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
@@ -46,15 +55,14 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd>
-                        <a href="javascript:;" onclick="addTab(this);" tab_url="http://www.llqqww.com">基本资料</a>
+                        <a href="javascript:void(0);" class="layTabPlus" tab_jump="true" tab_url="./user/userinfo.html">
+                            <i class="layui-icon layui-icon-star"> </i>个人信息</a>
+
                     </dd>
                     <dd>
-                        <a href="">安全设置</a>
+                        <a href="">退出登录</a>
                     </dd>
                 </dl>
-            </li>
-            <li class="layui-nav-item">
-                <a href="/mp.php/login/logout">退了</a>
             </li>
         </ul>
     </div>
@@ -67,12 +75,13 @@
                     <a class="" href="javascript:;">我的信息</a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:void(0);" class="layTabPlus"
-                               tab_url="./index2.html">
-                            <i class="layui-icon layui-icon-star"> </i>
-                            网站</a>
+                               tab_url="https://www.layui.com/doc/element/icon.html">
+                            <i class="layui-icon layui-icon-star"></i>
+                            百度
+                        </a>
                         </dd>
                         <dd><a href="javascript:void(0);" class="layTabPlus"
-                               tab_url="./index2.html">博客</a></dd>
+                               tab_url="https://gitee.com/explore">马云</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item layui-nav-itemed">
@@ -128,7 +137,7 @@
             </ul>
             <div class="layui-tab-content" style="padding:0px;">
                 <div class="layui-tab-item layui-show">
-                    <div class="sysNotice col">
+                    <div class="col">
                         <blockquote class="layui-elem-quote title">基本信息</blockquote>
                         <table class="layui-table">
                             <tbody>
@@ -153,11 +162,12 @@
             </div>
         </div>
     </div>
-    <div class="layui-footer">
-        © 2018 <a href="https://gitee.com/Leytton/layTabPlus">layTabPlus</a> - by Leytton
-    </div>
+<!--    <div class="layui-footer">-->
+<!--        © 2018 <a href="https://gitee.com/Leytton/layTabPlus">layTabPlus</a> - by Leytton-->
+<!--    </div>-->
 </div>
 <script src="../static/layui/layui.all.js"></script>
+
 <script>
     var $ = layui.jquery;
     var layer = layui.layer;
@@ -165,34 +175,41 @@
     var util = layui.util;
     var table = layui.table;
 </script>
-<script src="../static/js/layTabPlus.js"></script>
+
 <script>
     layTabPlus.init({
         lay_filter: 'demoTab'
     });
 </script>
+
+<script>
+    $('#close').on('click', function () {
+
+
+
+        // $('.layui-bg-black').toggle();
+        if ($('.layui-bg-black').is(':visible')) {
+
+            $('.layui-bg-black').animate({
+                right:'400px'
+            });
+            console.log('123123');
+            $(".layui-body").css({
+                "left":"0px"
+            });
+             $('.layui-bg-black').hide();
+        }else {
+            $('.layui-bg-black').show();
+            $(".layui-body").css({
+                "left":"200px"
+            });
+        }
+    })
+</script>
 </body>
 
 </html>
 <style>
-    .sysNotice .layui-table {
-        margin-top: 0;
-        border-left: 5px solid #e2e2e2;
-    }
 
-    .layui-elem-quote.title {
-        padding: 10px 15px;
-        margin-bottom: 0;
-    }
 
-    .sysNotice {
-        width: 75%;
-    }
-
-    .code {
-        color: #c7254e;
-        background-color: #f9f2f4;
-        border-radius: 2px;
-        padding: 4px 2px 0;
-    }
 </style>
