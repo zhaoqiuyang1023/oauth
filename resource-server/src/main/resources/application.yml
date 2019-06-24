@@ -1,6 +1,5 @@
 server:
   port: 1011
-
 logging:
   level:
     root: debug
@@ -19,11 +18,18 @@ spring:
     database: 10
     port: 6379
   jackson:
-
     date-format: yyyy-MM-dd HH:mm:ss
   resources:
-    static-locations: classpath:/static/,classpath:/views/
-
+    static-locations: classpath:/static/,classpath:/views/,classpath:/public,classpath:/resources,classpath:/META-INF/resources
+  thymeleaf:
+    cache: false
+    check-template: true
+    check-template-location: true
+    enabled: true
+    encoding: utf-8
+    mode: HTML5
+    prefix: classpath:/templates/
+    suffix: .html
 # mybaits 模块配置
 mybatis-plus:
   typeAliasesPackage: com.oauth.server.entity
@@ -45,3 +51,6 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: true
+token:
+  check: http://localhost:1010/oauth/check_token
+  login: http://localhost:1010/oauth/token

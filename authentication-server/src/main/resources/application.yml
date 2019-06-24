@@ -19,8 +19,16 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
   resources:
-    static-locations: classpath:/static/,classpath:/views/Fe
-
+    static-locations: classpath:/static/,classpath:/views/,classpath:/public,classpath:/resources,classpath:/META-INF/resources
+  thymeleaf:
+      cache: false
+      check-template: true
+      check-template-location: true
+      enabled: true
+      encoding: utf-8
+      mode: HTML5
+      prefix: classpath:/templates/
+      suffix: .html
 # mybaits 模块配置
 mybatis-plus:
   typeAliasesPackage: com.oauth.server.entity

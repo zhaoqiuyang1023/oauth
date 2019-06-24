@@ -1,17 +1,12 @@
 package com.oauth.server.config;
 
-import com.oauth.server.service.impl.CustomerUserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -44,14 +39,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        String[] gu= new String[]{"/login/**","/index/**","/static/**","/images/**","/js/**","/**/favicon.ico","/layui/**"};
+
         http.csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 .and()
                 .requestMatchers().anyRequest()
                 .and()
-                .formLogin().permitAll()
+                .formLogin()
+//                .loginPage("/login")    //跳转登录页面的控制器，该地址要保证和表单提交的地址一致！
                 .and()
                 .authorizeRequests()
+              //  .antMatchers(gu).permitAll()
                 .antMatchers("/oauth/**", "/authorize/**").permitAll()
                 .anyRequest()
                 .authenticated();

@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 @Configuration
 @EnableWebSecurity
 @EnableResourceServer
-@EnableGlobalMethodSecurity(prePostEnabled =true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 
@@ -32,21 +32,22 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     }
 
 
-
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-       // resources.resourceId("1").stateless(true);
+        // resources.resourceId("1").stateless(true);
         resources.tokenServices(tokenServices());
     }
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
+       String[] gu= new String[]{"/login/**","/oauth/**","/index/**","/static/**","/images/**","/js/**","/**/favicon.ico","/layui/**"};
         http
                 .csrf().disable()
                 .exceptionHandling()
                 .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
                 .and()
                 .authorizeRequests()
+                .antMatchers(gu).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();

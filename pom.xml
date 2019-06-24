@@ -58,7 +58,6 @@
             <version>1.2.7</version>
         </dependency>
         <dependency>
-            <!-- Spring Cloud starter -->
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter</artifactId>
         </dependency>
@@ -68,7 +67,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
-
 
 
         <!-- 注意是starter,自动配置 -->
@@ -126,6 +124,19 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mbp.boot.version}</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
 
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
