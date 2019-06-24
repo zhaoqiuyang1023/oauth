@@ -10,12 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * 
- *
- * @author alan
- * 2019-04-29 16:21:23
- */
+
 @RestController
 @RequestMapping("/role")
 public class RoleController {

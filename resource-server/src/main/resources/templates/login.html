@@ -93,15 +93,15 @@
             $ = layui.jquery,
             form = layui.form;
 
-        // $(document).ready(function () {
-        //     var srcBgArray = ["[[@{images/bg1.jpg}]]", "../static/images/bg1.jpg","[[@{images/bg2.png}]]",
-        //         "../static/images/bg2.png"];
-        //     $('#bg-body').bcatBGSwitcher({
-        //         timeout: 5000,
-        //         urls: srcBgArray,
-        //         alt: 'Full screen background image'
-        //     });
-        // });
+        $(document).ready(function () {
+            var srcBgArray = ["[[@{images/bg1.jpg}]]", "../static/images/bg1.jpg","[[@{images/bg2.png}]]",
+                "../static/images/bg2.png"];
+            $('#bg-body').bcatBGSwitcher({
+                timeout: 5000,
+                urls: srcBgArray,
+                alt: 'Full screen background image'
+            });
+        });
 
         $("#mycode").on('click', function () {
             var t = Math.random();
@@ -117,51 +117,14 @@
             } else {
                 data.field.rememberMe = false;
             }
-
-            //
-            // $.ajax({
-            //     type: "GET",
-            //     url: "http://192.168.30.125:1010/oauth/token",
-            //     dataType: 'jsonp',
-            //
-            //     contentType: "application/json; charset=utf-8",
-            //     data: JSON.stringify(data.field),
-            //     dataType: "json",
-            //     success: function (res) {
-            //         console.log(res);
-            //         if (res.success) {
-            //             parent.layer.msg("操作成功！", {time: 1000}, function () {
-            //                 parent.layer.closeAll();
-            //                 parent.location.reload();
-            //             });
-            //         } else {
-            //             layer.msg(res.message);
-            //         }
-            //     },
-            //     error: function (jqXHR) {
-            //         alert("发生错误：" + jqXHR.status);
-            //     }
-            // });
-            //
-            // $.ajax({
-            //     url: "http://192.168.30.125:1010/oauth/token",
-            //     dataType: 'jsonp',
-            //     processData: false,
-            //     type: 'get',
-            //     success: function (data) {
-            //         alert(data.name);
-            //     },
-            //     error: function (XMLHttpRequest, textStatus, errorThrown) {
-            //         alert(XMLHttpRequest.status);
-            //         alert(XMLHttpRequest.readyState);
-            //         alert(textStatus);
-            //     }
-            // });
             $.post("login", data.field, function (res) {
                 layer.close(loadIndex);
                 if (res.success) {
-                    console.log(res)
-                    location.href = "/index/" + res.id;
+                    console.log(res);
+                //    location.href = "/index/" + res.id;
+                    console.log(res.data.access_token);
+                    localStorage.access_token = res.data.access_token;
+                    location.href="index?access_token="+res.data.access_token;
                 } else {
                     layer.msg(res.message);
                     $("#mycode").click();

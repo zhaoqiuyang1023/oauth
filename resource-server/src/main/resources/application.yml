@@ -12,9 +12,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
-    url: jdbc:mysql://192.168.30.170:3306/oauth?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/oauth?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
   redis:
-    host: 192.168.30.170
+    host: 192.168.1.5
     database: 10
     port: 6379
   jackson:
@@ -22,14 +22,14 @@ spring:
   resources:
     static-locations: classpath:/static/,classpath:/views/,classpath:/public,classpath:/resources,classpath:/META-INF/resources
   thymeleaf:
-    cache: false
-    check-template: true
-    check-template-location: true
-    enabled: true
-    encoding: utf-8
-    mode: HTML5
-    prefix: classpath:/templates/
-    suffix: .html
+  cache: false
+  check-template: true
+  check-template-location: true
+  enabled: true
+  encoding: utf-8
+  mode: HTML5
+  prefix: classpath:/templates/
+  suffix: .html
 # mybaits 模块配置
 mybatis-plus:
   typeAliasesPackage: com.oauth.server.entity
